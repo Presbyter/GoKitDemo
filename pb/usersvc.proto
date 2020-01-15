@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package pb;
+
+service UserService {
+    rpc Login (LoginRequest) returns (LoginResponse) {
+    }
+}
+
+enum LoginType {
+    Phone = 0;
+    WeChat = 1;
+    QQ = 2;
+    Apple = 3;
+}
+
+enum DeviceType {
+    Android = 0;
+    IOS = 1;
+}
+
+message LoginRequest {
+    LoginType loginType = 1;
+    string value = 2;
+    string code = 3;
+    DeviceType deviceType = 4;
+    string deviceCode = 5;
+}
+
+message LoginResponse {
+    message DataStruct {
+        int32 UserID = 1;
+        string NickName = 2;
+        int32 Gender = 3;
+        string Avatar = 4;
+    }
+    int32 code = 1;
+    string msg = 2;
+    DataStruct data = 3;
+}
