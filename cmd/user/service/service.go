@@ -43,7 +43,7 @@ func (u *userService) Login(ctx context.Context, loginType int32, value string, 
 	//default:
 	//	return nil, errors.New("not sport LoginType")
 	//}
-
+	time.Sleep(10 * time.Minute)
 	//panic("not implement")
 	return &repo.User{
 		Model: gorm.Model{

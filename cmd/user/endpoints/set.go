@@ -23,7 +23,7 @@ func New(svc service.Service, logger log.Logger /*, duration metrics.Histogram, 
 	{
 		loginEndpoint = MakeLoginEndpoint(svc)
 		loginEndpoint = ratelimit.NewErroringLimiter(rate.NewLimiter(rate.Every(time.Second), 1))(loginEndpoint)
-		loginEndpoint = circuitbreaker.Gobreaker(gobreaker.NewCircuitBreaker(gobreaker.Settings{}))(loginEndpoint)
+		loginEndpoint = circuitbreaker.Gobreaker(gobreaker.NewCircuitBreaker(gobreaker.Settings{Timeout: time.Second}))(loginEndpoint)
 		loginEndpoint = LoggingMiddleware(log.With(logger, "method", "Login"))(loginEndpoint)
 	}
 
