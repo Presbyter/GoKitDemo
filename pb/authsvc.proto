@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package pb;
+
+service AuthService {
+    rpc GetJwt (GetJwtRequest) returns (GetJwtResponse) {
+    }
+    rpc Refresh (RefreshRequest) returns (RefreshResponse) {
+    }
+    rpc Validate (ValidateRequest) returns (ValidateResponse) {
+    }
+}
+
+message GetJwtRequest {
+    int64 validity_time = 1;
+    int32 user_id = 2;
+    repeated string aud = 4;
+    string sub = 5;
+}
+
+message GetJwtResponse {
+    string token = 1;
+    string refresh_token = 2;
+}
+
+message RefreshRequest {
+    string refresh_token = 1;
+}
+
+message RefreshResponse {
+    string token = 1;
+    string refresh_token = 2;
+}
+
+message ValidateRequest {
+    string token = 1;
+}
+
+message ValidateResponse {
+    message Payload {
+        int32 user_id = 1;
+        string iss = 2;
+        int32 exp = 3;
+        string sub = 4;
+        string aud = 5;
+        int32 nbf = 6;
+        int32 iat = 7;
+        string jti = 8;
+    }
+
+    Payload payload = 1;
+}
