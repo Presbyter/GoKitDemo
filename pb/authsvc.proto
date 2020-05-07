@@ -19,8 +19,13 @@ message GetJwtRequest {
 }
 
 message GetJwtResponse {
-    string token = 1;
-    string refresh_token = 2;
+    message DataStruct {
+        string token = 1;
+        string refresh_token = 2;
+    }
+    int32 code = 1;
+    string err_msg = 2;
+    DataStruct data = 3;
 }
 
 message RefreshRequest {
@@ -28,8 +33,13 @@ message RefreshRequest {
 }
 
 message RefreshResponse {
-    string token = 1;
-    string refresh_token = 2;
+    message DataStruct {
+        string token = 1;
+        string refresh_token = 2;
+    }
+    int32 code = 1;
+    string err_msg = 2;
+    DataStruct data = 3;
 }
 
 message ValidateRequest {
@@ -37,7 +47,7 @@ message ValidateRequest {
 }
 
 message ValidateResponse {
-    message Payload {
+    message DataStruct {
         int32 user_id = 1;
         string iss = 2;
         int32 exp = 3;
@@ -47,6 +57,7 @@ message ValidateResponse {
         int32 iat = 7;
         string jti = 8;
     }
-
-    Payload payload = 1;
+    int32 code = 1;
+    string err_msg = 2;
+    DataStruct data = 3;
 }

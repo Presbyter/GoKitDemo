@@ -105,7 +105,7 @@ func MakeValidateEndpoint(svc service.Service) endpoint.Endpoint {
 		pl, err := svc.Validate(ctx, req.Token)
 		resp := &ValidateResponse{
 			CustomPayload: pl,
-			err:           err,
+			Err:           err,
 		}
 		return resp, nil
 	}
@@ -117,5 +117,5 @@ type ValidateRequest struct {
 
 type ValidateResponse struct {
 	CustomPayload *service.CustomPayload
-	err           error
+	Err           error
 }
