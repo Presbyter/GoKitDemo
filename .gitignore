@@ -117,4 +117,4 @@ Temporary Items
 # vendor/
 
 bin/
-!/GoKitDemo.iml
+/GoKitDemo.iml
