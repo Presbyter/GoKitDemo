@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package pb;
+
+service WechatService {
+    rpc QrConnect (QrConnectRequest) returns (QrConnectResponse) {
+    }
+}
+
+message QrConnectRequest {
+    string app_id = 1;
+    string redirect_uri = 2;
+    string state = 3;
+}
+
+message QrConnectResponse {
+    message DataStruct {
+        string code = 1;
+        string state = 2;
+    }
+    int32 code = 1;
+    string err_msg = 2;
+    DataStruct data = 3;
+}
